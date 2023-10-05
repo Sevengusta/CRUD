@@ -17,7 +17,6 @@ cur.execute(
     (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
-        weight REAL
     )
     '''
 )
@@ -27,7 +26,7 @@ class App(UserControl):
         super().__init__()
 
         self.all_data = Column(auto_scroll=True)
-        self.add_data = TextField(label='nome do dado')
+        self.add_product = TextField(label='Nome do Produto')
         self.edit_data = TextField(label='Editar')
 
     def delete(self, x, y):
@@ -100,7 +99,7 @@ class App(UserControl):
     # Criar um dado dentro do Banco de dados (CREATE)
     def add_new_data(self, e):
         cur.execute("INSERT INTO clientes (name) VALUES (?)", [self.
-        add_data.value])
+        add_product.value])
         connection.commit()
 
         self.all_data.controls.clear()
@@ -111,7 +110,7 @@ class App(UserControl):
     def build(self):
         return Column([
             Text("CRUD OM SQLITE", size=20, ),
-            self.add_data,
+            self.add_product,
             ElevatedButton(
                 'Adicionar dado',
                 on_click=self.add_new_data,
